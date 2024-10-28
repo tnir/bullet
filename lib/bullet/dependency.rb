@@ -35,6 +35,10 @@ module Bullet
             'active_record71'
           elsif active_record72?
             'active_record72'
+          elsif active_record80?
+            'active_record80'
+          elsif active_record81?
+            'active_record81'
           else
             raise "Bullet does not support active_record #{::ActiveRecord::VERSION::STRING} yet"
           end
@@ -74,6 +78,10 @@ module Bullet
 
     def active_record7?
       active_record? && ::ActiveRecord::VERSION::MAJOR == 7
+    end
+
+    def active_record8?
+      active_record? && ::ActiveRecord::VERSION::MAJOR == 8
     end
 
     def active_record40?
@@ -118,6 +126,14 @@ module Bullet
 
     def active_record72?
       active_record7? && ::ActiveRecord::VERSION::MINOR == 2
+    end
+
+    def active_record80?
+      active_record8? && ::ActiveRecord::VERSION::MINOR == 0
+    end
+
+    def active_record81?
+      active_record8? && ::ActiveRecord::VERSION::MINOR == 1
     end
 
     def mongoid4x?
