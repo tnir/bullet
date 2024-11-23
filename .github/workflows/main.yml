@@ -84,15 +84,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gemfile: [ 'Gemfile.rails-8.0' ]
+        gemfile: ['Gemfile.rails-8.0', 'Gemfile.rails-8.1']
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2
-          bundler-cache: true
-      - name: Run tests
-        run: bundle exec rake
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2
+        bundler-cache: true
+    - name: Run tests
+      run: bundle exec rake
